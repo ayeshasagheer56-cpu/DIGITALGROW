@@ -7,7 +7,8 @@ from functools import wraps
 from flask import Flask, Response, g, jsonify, render_template, request
 
 app = Flask(__name__)
-DB_PATH = os.environ.get("DB_PATH", os.path.join(os.path.dirname(__file__), "leads.db"))
+DEFAULT_DB = "/tmp/leads.db" if os.environ.get("VERCEL") else os.path.join(os.path.dirname(__file__), "leads.db")
+DB_PATH = os.environ.get("DB_PATH", DEFAULT_DB)
 ADMIN_USER = os.environ.get("ADMIN_USER", "admin")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "change-me-now")
 
