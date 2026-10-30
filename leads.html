@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<title>Leads | DigitalGrow admin</title>
+<style>body{font:15px/1.5 system-ui,sans-serif;margin:24px}table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #cfe0d5;padding:8px;text-align:left;vertical-align:top}th{background:#eef5f0}</style></head>
+<body><h1>Leads ({{ leads|length }})</h1>
+{% if not leads %}<p>No leads yet. Submissions from the contact form appear here.</p>{% else %}
+<table><tr><th>Date (UTC)</th><th>Name</th><th>Email</th><th>Phone</th><th>Service</th><th>Message</th></tr>
+{% for l in leads %}<tr><td>{{ l.created_at }}</td><td>{{ l.name }}</td>
+<td><a href="mailto:{{ l.email }}">{{ l.email }}</a></td><td>{{ l.phone }}</td><td>{{ l.service }}</td><td>{{ l.message }}</td></tr>{% endfor %}
+</table>{% endif %}</body></html>
